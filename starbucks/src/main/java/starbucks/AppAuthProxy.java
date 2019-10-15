@@ -5,7 +5,7 @@ package starbucks ;
 /**
  * Authentication Proxy for App Controller
  */
-public class AppAuthProxy implements IApp, IPinAuthObserver {
+public class AppAuthProxy implements IApp, IPinAuthObserver,IKeyPadObserver {
     
     private IApp app = new AppController() ;
     private KeyPad kp;
@@ -14,6 +14,7 @@ public class AppAuthProxy implements IApp, IPinAuthObserver {
     private Spacer sp ;
     private boolean authenticated = false ;
     private PinEntryMachine pm ;
+    private int count = 0;
 
     public AppAuthProxy() {
         kp = new KeyPad() ;
@@ -30,6 +31,7 @@ public class AppAuthProxy implements IApp, IPinAuthObserver {
         // setup the observer pattern
         ((IKeyPadSubject)kp).attach( pc ) ;
         ((IKeyPadSubject)kp).attach( pm ) ;
+        ((IKeyPadSubject)kp).attach( this ) ;
         ((IPinAuthSubject)pm).registerObserver(this) ;
 
 
@@ -92,7 +94,10 @@ public class AppAuthProxy implements IApp, IPinAuthObserver {
             String out = "" ;
             out = "----------------\n" ;
             out += "   " + ps.name() + "  \n" ;
-            out += "----------------\n\n\n" ;
+            out += "----------------\n" ;
+            if( count == 4) {
+                out += "  Invalid Pin\n\n";
+            }
             out += ps.display() ;
             out += "\n\n\n----------------\n" ;
             return out ;
@@ -133,5 +138,9 @@ public class AppAuthProxy implements IApp, IPinAuthObserver {
     }
 
 
-
+    @Override
+    public void keyEventUpdate(int c, String key) {
+        System.err.println( "Key: " + key ) ;
+        count = c ;
+    }
 }

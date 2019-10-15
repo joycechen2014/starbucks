@@ -12,10 +12,10 @@ final class Main {
     /**
      * Prevent Construction.
      */
-    private Main() {
-        // Utility Class
-        return ;
-    }
+    //private Main() {
+    //    // Utility Class
+    //    return ;
+    //}
 
     /**
      * Main App Entry Point.

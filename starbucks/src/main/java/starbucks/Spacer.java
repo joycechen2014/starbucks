@@ -11,7 +11,7 @@ public class Spacer implements IDisplayComponent, ITouchEventHandler {
      * @return [description]
      */
     public String display() {
-        return "" ;
+           return "" ;
     }
 
     /**
@@ -39,5 +39,4 @@ public class Spacer implements IDisplayComponent, ITouchEventHandler {
     public void setNext( ITouchEventHandler next) {
         nextHandler = next ;
     }
-
 }
