@@ -7,6 +7,7 @@ package starbucks ;
  */
 public class Frame implements IFrame
 {
+    private static Frame instance;
     private IScreen current ;
     private IMenuInvoker menuA = new MenuOption() ;
     private IMenuInvoker menuB = new MenuOption() ;
@@ -17,6 +18,12 @@ public class Frame implements IFrame
     private IOrientationStrategy landscapeStrategy ;
     private IOrientationStrategy currentStrategy ;
 
+//    public static Frame getInstance(IScreen initial) {
+//        if(instance == null) {
+//            instance = new Frame(initial);
+//        }
+//        return instance;
+//    }
     /**
      * Return Screen Name
      * @return Screen Name
@@ -172,7 +179,7 @@ public class Frame implements IFrame
             public void selectD() { menuD.invoke() ; }
 
             /** Select Command E */
-            public void selectE() { /** todo **/ }
+            public void selectE() { menuE.invoke() ; }
 
         } ;
 
@@ -311,6 +318,6 @@ public class Frame implements IFrame
     public void selectD() { currentStrategy.selectD() ;  }
 
     /** Select Command E */
-    public void selectE() { /* todo */  }    
+    public void selectE() { currentStrategy.selectE() ; }
 
 }
