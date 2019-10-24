@@ -1,5 +1,3 @@
-
-
 package starbucks ;
 
 /**
@@ -7,7 +5,7 @@ package starbucks ;
  */
 public class Frame implements IFrame
 {
-    private static Frame instance;
+    private volatile static Frame frameInstance;
     private IScreen current ;
     private IMenuInvoker menuA = new MenuOption() ;
     private IMenuInvoker menuB = new MenuOption() ;
@@ -18,12 +16,14 @@ public class Frame implements IFrame
     private IOrientationStrategy landscapeStrategy ;
     private IOrientationStrategy currentStrategy ;
 
-//    public static Frame getInstance(IScreen initial) {
-//        if(instance == null) {
-//            instance = new Frame(initial);
-//        }
-//        return instance;
-//    }
+    public static Frame getInstance() {
+        if(frameInstance == null) {
+            throw new AssertionError("You have to call init first");
+        }
+
+        return frameInstance;
+    }
+
     /**
      * Return Screen Name
      * @return Screen Name
@@ -34,7 +34,7 @@ public class Frame implements IFrame
     public void landscape() { currentStrategy = landscapeStrategy ; }
 
     /** Switch to Portrait Strategy */
-    public void portrait()  { currentStrategy = portraitStrategy ; }  
+    public void portrait()  { currentStrategy = portraitStrategy ; }
 
     /** Nav to Previous Screen */
     public void previousScreen() {
@@ -48,15 +48,15 @@ public class Frame implements IFrame
 
 
 
-   /**
+    /**
      * Helper Debug Dump to STDERR
      * @param str Lines to print
      */
     private void dumpLines(String str) {
-          String[] lines = str.split("\r\n|\r|\n");
-          for ( int i = 0; i<lines.length; i++ ) {
+        String[] lines = str.split("\r\n|\r|\n");
+        for ( int i = 0; i<lines.length; i++ ) {
             System.err.println( i + ": " + lines[i] ) ;
-          }
+        }
     }
 
     /**
@@ -74,19 +74,19 @@ public class Frame implements IFrame
         */
 
         if (str == null || str.isEmpty()) {
-                return 0;
-            }
+            return 0;
+        }
 
         int lines = 0;
         int pos = 0;
         while ((pos = str.indexOf("\n", pos) + 1) != 0) {
-                lines++;
+            lines++;
         }
 
         return lines ;
     }
 
-    /** 
+    /**
      * Helper:  Pad lines for a Screen 
      * @param  num Lines to Padd
      * @return     Padded Lines
@@ -100,7 +100,7 @@ public class Frame implements IFrame
         System.err.println("") ;
         return lines ;
     }
-    
+
     /**
      * Helper:  Pad Spaces for a Line
      * @param  num Num Spaces to Pad
@@ -109,16 +109,27 @@ public class Frame implements IFrame
     private String padSpaces(int num) {
         String spaces = "" ;
         for ( int i = 0; i<num; i++ )
-            spaces += " " ;           
-        return spaces ;     
-    }            
+            spaces += " " ;
+        return spaces ;
+    }
+
+    public synchronized static Frame init(IScreen initial) {
+        if (frameInstance != null)
+        {
+            throw new AssertionError("You already initialized Frame");
+        }
+
+        frameInstance = new Frame(initial);
+        return frameInstance;
+    }
+
 
     /** Constructor */
-    public Frame(IScreen initial)
+    private  Frame(IScreen initial)
     {
         current = initial ;
 
-        portraitStrategy = new IOrientationStrategy() 
+        portraitStrategy = new IOrientationStrategy()
         {
             /**
              * Display Screen Contents
@@ -127,15 +138,15 @@ public class Frame implements IFrame
             public void display(IScreen s)
             {
                 System.out.println( contents(s) ) ;
-            }         
+            }
 
-                /**
+            /**
              * Return String / Lines for Frame and Screen
              * @param  s [description]
              * @return   [description]
              */
-            public String contents(IScreen s) 
-            { 
+            public String contents(IScreen s)
+            {
                 String out = "" ;
                 out += "===============\n" ;
                 int nameLen = s.name().length() ;
@@ -163,7 +174,7 @@ public class Frame implements IFrame
                 out +=  "===============\n" ;
                 out +=  "[A][B][C][D][E]\n" ;
                 dumpLines( out ) ;
-                return out ;             
+                return out ;
             }
 
             /** Select Command A */
@@ -183,7 +194,7 @@ public class Frame implements IFrame
 
         } ;
 
-        landscapeStrategy = new IOrientationStrategy() 
+        landscapeStrategy = new IOrientationStrategy()
         {
             /**
              * Display Screen Contents
@@ -192,15 +203,15 @@ public class Frame implements IFrame
             public void display(IScreen s)
             {
                 System.out.println( contents(s) ) ;
-            }         
+            }
 
-           /**
+            /**
              * Display Contents of Frame + Screen 
              * @param  s Screen to Display
              * @return   Contents for Screen
              */
-            public String contents(IScreen s) 
-            { 
+            public String contents(IScreen s)
+            {
                 String out = "" ;
                 out += "================================\n" ;
                 out += "  " + s.name() + "  \n" ;
@@ -211,7 +222,7 @@ public class Frame implements IFrame
                 return out ;
             }
 
-             /** Don't Respond in Landscaope Mode */
+            /** Don't Respond in Landscaope Mode */
             public void selectA() {  }
 
             /** Don't Respond in Landscaope Mode */
@@ -226,7 +237,7 @@ public class Frame implements IFrame
             /** Don't Respond in Landscaope Mode */
             public void selectE() {  }
 
-       } ;     
+        } ;
 
         /* set default layout strategy */
         currentStrategy = portraitStrategy ;
@@ -251,11 +262,11 @@ public class Frame implements IFrame
         if ( "A".equals(slot) ) { menuA.setCommand(c) ;  }
         if ( "B".equals(slot) ) { menuB.setCommand(c) ; }
         if ( "C".equals(slot) ) { menuC.setCommand(c) ; }
-        if ( "D".equals(slot) ) { menuD.setCommand(c) ; } 
-        if ( "E".equals(slot) ) { menuE.setCommand(c) ; }   
+        if ( "D".equals(slot) ) { menuD.setCommand(c) ; }
+        if ( "E".equals(slot) ) { menuE.setCommand(c) ; }
     }
 
-    /** 
+    /**
      * Send Touch Event
      * @param x X Coord
      * @param y Y Coord
@@ -271,13 +282,13 @@ public class Frame implements IFrame
      * Get Contents of the Frame + Screen 
      * @return Frame + Screen Contents
      */
-    public String contents() 
-    { 
+    public String contents()
+    {
         if ( current != null )
         {
-            return currentStrategy.contents( current ) ; 
-        } 
-        else 
+            return currentStrategy.contents( current ) ;
+        }
+        else
         {
             return "" ;
         }
@@ -291,18 +302,18 @@ public class Frame implements IFrame
             currentStrategy.display( current ) ;
         }
     }
- 
+
     /**
      *  Execute a Command 
      * @param c Command
      */
-    public void cmd( String c ) 
+    public void cmd( String c )
     {
         if ( "A".equals(c) ) { selectA() ; }
         if ( "B".equals(c) ) { selectB() ; }
         if ( "C".equals(c) ) { selectC() ; }
-        if ( "D".equals(c) ) { selectD() ; }        
-        if ( "E".equals(c) ) { selectE() ; }        
+        if ( "D".equals(c) ) { selectD() ; }
+        if ( "E".equals(c) ) { selectE() ; }
     }
 
     /** Select Command A */

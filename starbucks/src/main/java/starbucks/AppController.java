@@ -27,7 +27,8 @@ public class AppController implements IApp {
         payments = new Payments() ;
         settings = new Settings() ;
        // frame = Frame.getInstance(mycards) ;
-       frame = new Frame( mycards ) ;
+       //frame = new Frame( mycards ) ;
+        frame = Frame.init(mycards);
 
         // setup command pattern
         displayMyCards  = new MenuCommand() ;
