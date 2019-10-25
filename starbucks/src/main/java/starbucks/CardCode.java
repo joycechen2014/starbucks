@@ -34,4 +34,9 @@ public class CardCode  implements ITouchEventHandler, IDisplayComponent, IKeyPad
     public void setNext(ITouchEventHandler next) {
 
     }
+    public boolean isComplete() {
+        return cardCode.length() == 3;
+    }
+
+
 }

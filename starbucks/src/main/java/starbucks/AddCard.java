@@ -1,6 +1,8 @@
 
 package starbucks;
 
+
+
 /**
  * Add New Card Screen
  */
@@ -11,13 +13,14 @@ public class AddCard extends Screen implements IScreen
     private CardID ci;
     private Spacer sp ;
     private CardCode cc;
+    private boolean addCardAthutic;
     public AddCard()
     {
         kp = new KeyPad() ;
         ci = new CardID() ;
         sp = new Spacer() ;
         cc = new CardCode() ;
-
+        addCardAthutic = false;
 
         // setup the composite pattern
         addSubComponent( ci ) ;
@@ -44,5 +47,22 @@ public class AddCard extends Screen implements IScreen
             ((IKeyPadSubject)kp).attach( cc ) ;
         }
         kp.touch(x, y);
+        if(ci.isComplete() && cc.isComplete()) {
+            addCardAthutic = true;
+        }
+    }
+
+    @Override
+    public void next() {
+        if(addCardAthutic) {
+            MyCards mycards = new MyCards("20.00",ci,cc);
+            Frame.getInstance().setCurrentScreen(mycards);
+        }
+    }
+
+    @Override
+    public void prev() {
+        Settings setting = new Settings();
+        Frame.getInstance().setCurrentScreen(setting);
     }
 }

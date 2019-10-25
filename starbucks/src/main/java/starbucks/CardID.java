@@ -2,13 +2,15 @@ package starbucks;
 
 public class CardID  implements ITouchEventHandler, IDisplayComponent, IKeyPadObserver{
     ITouchEventHandler nextHandler ;
-    StringBuilder cardID = new StringBuilder();
+    private StringBuilder cardID = new StringBuilder();
+
     @Override
     public String display() {
         String value = "[" ;
         value += cardID.toString();
         value += "]";
         return value  ;
+
     }
 
     @Override
@@ -33,5 +35,14 @@ public class CardID  implements ITouchEventHandler, IDisplayComponent, IKeyPadOb
     @Override
     public void setNext(ITouchEventHandler next) {
         nextHandler = next ;
+    }
+
+    public boolean isComplete() {
+        System.out.println("length :" + cardID.length());
+        return (cardID.length() == 9 );
+    }
+
+    public String getCardNo(){
+        return cardID.toString();
     }
 }
