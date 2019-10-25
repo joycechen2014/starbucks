@@ -2,6 +2,8 @@
 
 package starbucks;
 
+import java.text.DecimalFormat;
+
 /** My Card Pay Screen */
 public class MyCardsPay extends Screen
 {
@@ -17,7 +19,7 @@ public class MyCardsPay extends Screen
 
     @Override
     public String display() {
-        String value = mycard.getCardID() != null ? "["+mycard.getCardID()+"]" : "[000000000]";
+        String value = mycard.getCardID() != null ? "[" + mycard.getCardID() + "]" : "[000000000]";
         value += "\n\n\n";
         value += "Scan Now";
         return value;
@@ -26,8 +28,9 @@ public class MyCardsPay extends Screen
     @Override
     public void touch(int x, int y) {
         if((x == 2 || x == 3) && y == 2) {
-            if(Double.valueOf(mycard.getValue()) >= 1.5)
-            mycard.setValue(Double.toString((Double.valueOf(mycard.getValue()) - 1.5)));
+            DecimalFormat df = new DecimalFormat("#.00");
+            if(Double.valueOf(mycard.getValue().substring(1)) >= 1.50)
+            mycard.setValue("$"  + df.format(Double.valueOf(mycard.getValue().substring(1)) - 1.50));
         }
         if( x == 3 && y == 3) {
             Frame.getInstance().setCurrentScreen(mycard);
