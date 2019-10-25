@@ -10,4 +10,13 @@ public class MyCardsMoreOptions extends Screen
     {
     }
 
+    @Override
+    public String display() {
+        String value = "";
+        value += "Refresh\n";
+        value += "Reload\n";
+        value += "Auto Reload\n";
+        value += "Transaction";
+        return value;
+    }
 }

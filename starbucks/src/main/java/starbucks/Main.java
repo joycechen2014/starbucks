@@ -22,7 +22,7 @@ final class Main {
      * @param args No args expected.
      */
     public static void main(final String[] args) {
-        System.err.println( "Args: " + args ) ;
+        //System.err.println( "Args: " + args ) ;
         IApp app = new AppAuthProxy() ;
         Console c = System.console();
         String msg = "" ;
@@ -43,7 +43,7 @@ final class Main {
                 parms = parms.substring(1) ;
                 parms = parms.substring(0, parms.length() - 1) ;
                 String[] values = parms.split(",") ;
-                System.err.println( "Value: " + values ) ;
+              //  System.err.println( "Value: " + values ) ;
                 String x = values[0] ;
                 String y = values[1] ;
                 msg = "touch: x="+x + " y="+y ; 

@@ -114,11 +114,6 @@ public class Frame implements IFrame
     }
 
     public synchronized static Frame init(IScreen initial) {
-        if (frameInstance != null)
-        {
-            throw new AssertionError("You already initialized Frame");
-        }
-
         frameInstance = new Frame(initial);
         return frameInstance;
     }
@@ -250,6 +245,11 @@ public class Frame implements IFrame
     public void setCurrentScreen( IScreen s )
     {
         current = s ;
+    }
+
+    public IScreen getCurrentScreen()
+    {
+        return current;
     }
 
     /**

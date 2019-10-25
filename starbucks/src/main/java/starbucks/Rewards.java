@@ -11,4 +11,11 @@ public class Rewards extends Screen
 
     }
 
+    @Override
+    public String display() {
+        String value = "";
+        value += "Make Every\n";
+        value += "Visit Count";
+        return value;
+    }
 }

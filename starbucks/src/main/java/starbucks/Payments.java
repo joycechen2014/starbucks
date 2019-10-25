@@ -11,4 +11,11 @@ public class Payments extends Screen
 
     }
 
+    @Override
+    public String display() {
+        String value = "";
+        value += "Find Store\n";
+        value += "Enable Payments";
+        return value;
+    }
 }

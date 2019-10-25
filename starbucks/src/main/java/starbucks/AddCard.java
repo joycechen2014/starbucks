@@ -55,7 +55,7 @@ public class AddCard extends Screen implements IScreen
     @Override
     public void next() {
         if(addCardAthutic) {
-            MyCards mycards = new MyCards("20.00",ci,cc);
+            MyCards mycards = new MyCards("$20.00",ci,cc);
             Frame.getInstance().setCurrentScreen(mycards);
         }
     }
