@@ -66,7 +66,7 @@ public class MyCardsPayTest
         app.display();
         assertEquals("MyCardsPay", app.screen());
         lines = app.screenContents().split("\n");
-        assertEquals("123456789", lines[6]);
+        assertEquals("[123456789]", lines[6]);
     }
 
     @After

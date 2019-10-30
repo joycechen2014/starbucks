@@ -84,14 +84,14 @@ public class Screen implements IScreen, IDisplayComponent
      * Get Display Contents
      * @return Display Contents
      */
-    public String display() { 
-        String value = "" ;
+    public String display() {
+        StringBuffer value = new StringBuffer();
         for (IDisplayComponent c : components )
         {
             System.err.println( "Screen: " + c.getClass().getName() ) ;
-            value = value + c.display() + "\n" ;
+            value.append(c.display()).append("\n") ;
         }
-        return value ; 
+        return value.toString() ;
     }
 
     /**

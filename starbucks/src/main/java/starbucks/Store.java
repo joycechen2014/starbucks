@@ -17,13 +17,14 @@ public class Store extends Screen
 
     @Override
     public  String display() {
-        String value = "";
+        StringBuffer value = new StringBuffer();
+        //String value = "";
         for(int i = 0; i < row; i++ ) {
             for (int j = 0; j < colum; j++) {
-                value += map[i][j];
+                value.append(map[i][j]);
             }
-            value += "\n";
+            value.append("\n");
         }
-        return value;
+        return value.toString();
     }
 }

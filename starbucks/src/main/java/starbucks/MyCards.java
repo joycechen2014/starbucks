@@ -8,7 +8,7 @@ public class MyCards extends Screen
     private String value;
     private CardCode cc;
     private CardID ci;
-    private MyCardsPay mycardPay = new MyCardsPay();
+   // private MyCardsPay mycardPay = new MyCardsPay();
     private MyCardsOptions mycardoptions = new MyCardsOptions();
     public MyCards() {
         this.value = "$0.00";
@@ -39,6 +39,10 @@ public class MyCards extends Screen
     }
     public String getCardID() {
         return ci != null ? ci.getCardNo() : null;
+    }
+
+    public String getCardCode() {
+        return cc != null ? cc.getCardcode() : null;
     }
 
     public String getValue() {

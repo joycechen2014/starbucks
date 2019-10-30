@@ -50,6 +50,7 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
             case 2: value = " [*][*][_][_]" ; break ;
             case 3: value = " [*][*][*][_]" ; break ;
             case 4: value = " [*][*][*][*]" ; break ;
+            default: value = " [*][*][*][*]" ; break ;
         }
          return value  ;
     }

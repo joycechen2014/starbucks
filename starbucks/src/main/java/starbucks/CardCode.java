@@ -32,11 +32,13 @@ public class CardCode  implements ITouchEventHandler, IDisplayComponent, IKeyPad
 
     @Override
     public void setNext(ITouchEventHandler next) {
-
+        nextHandler = next ;
     }
     public boolean isComplete() {
         return cardCode.length() == 3;
     }
 
-
+    public String getCardcode(){
+        return cardCode.toString();
+    }
 }

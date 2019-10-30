@@ -97,7 +97,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void setStateOnePinDigit( String digit )
     {
-        this.pinCount = 1 ;
+        this.pinCount += 1 ;
         this.state = pin1 ;
         if ( digit != null )
             this.d1 = digit ;
@@ -115,7 +115,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void setStateTwoPinDigits( String digit )
     {
-        this.pinCount = 2 ;
+        this.pinCount += 1 ;
         this.state = pin2 ;
         if ( digit != null )
             this.d2 = digit ;
@@ -132,7 +132,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void setStateThreePinDigits( String digit )
     {
-        this.pinCount = 3 ;
+        this.pinCount += 1 ;
         this.state = pin3 ;
         if ( digit != null )
             this.d3 = digit ;
@@ -148,9 +148,9 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void setStateFourPinDigits( String digit )
     {
-        this.pinCount = 4 ;
+        this.pinCount += 1 ;
         this.state = pin4 ;
-        if ( digit != null )
+        if ( pinCount == 4 && digit != null )
         {
             this.d4 = digit ;
             debug() ;
@@ -159,12 +159,15 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
             {
                 System.err.println( "Successful Login!" ) ;
                 this.authenticated = true ;
-                notifyObserver() ;
+
             }
             else
             {
                 System.err.println( "Login Failed!" ) ;
                 setStateNoPinDigits() ;
+            }
+            if(this.authenticated == true) {
+                notifyObserver() ;
             }
         }
     }
