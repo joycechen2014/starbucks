@@ -6,7 +6,7 @@ package starbucks;
 /**
  * Add New Card Screen
  */
-public class AddCard extends Screen implements IScreen
+public class AddCard extends Screen
 {
 
     private KeyPad kp;

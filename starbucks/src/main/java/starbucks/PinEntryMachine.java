@@ -2,6 +2,8 @@
 
 package starbucks ;
 
+import java.util.ArrayList;
+
 /** Pin Entry Machine - Context for State Pattern */
 public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinAuthSubject
 {
@@ -19,7 +21,8 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
     private String pin = "1234" ;
     private boolean authenticated = false ;
     private int pinCount=0 ;
-    private IPinAuthObserver auth ; // single observer 
+    //private IPinAuthObserver auth ; // single observer
+    private ArrayList<IPinAuthObserver> auth ;
 
     // pin machine states
     private NoPinDigits pin0 ;
@@ -49,6 +52,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
         pin2 = new TwoPinDigits( this ) ;
         pin3 = new ThreePinDigits( this ) ;
         pin4 = new FourPinDigits( this ) ;
+        auth = new ArrayList<IPinAuthObserver>() ;
         this.d1 = "" ;
         this.d2 = "" ;
         this.d3 = "" ;
@@ -194,7 +198,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void registerObserver( IPinAuthObserver obj ) 
     {
-        this.auth = obj ;
+        this.auth.add(obj) ;
     }
 
     /**
@@ -203,7 +207,10 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void removeObserver( IPinAuthObserver obj ) 
     {
-        this.auth = null ;
+
+        int i = auth.indexOf(obj) ;
+        if ( i >= 0 )
+            auth.remove(i) ;
     }
 
     /**
@@ -211,8 +218,13 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void notifyObserver( ) 
     {
-        if ( this.auth != null )
-            this.auth.authEvent() ;
+       // if ( this.auth != null )
+       //     this.auth.authEvent() ;
+        for (int i=0; i<auth.size(); i++)
+        {
+            IPinAuthObserver observer = auth.get(i) ;
+            observer.authEvent() ;
+        }
     }
 
     /** Debug Dump to Stderr State Machine Changes */

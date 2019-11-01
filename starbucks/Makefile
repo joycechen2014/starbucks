@@ -19,7 +19,7 @@ test:
 	gradle test
 
 jar: compile
-	gradle shadowJar
+	gradle shadowJarg
 
 spotbugs:
 	gradle spotbugsMain

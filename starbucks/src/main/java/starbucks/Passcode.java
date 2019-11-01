@@ -3,10 +3,11 @@
 package starbucks ;
 
 /** Passcode Screen Component */
-public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadObserver
+public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadObserver,IPinAuthObserver
 {
     ITouchEventHandler nextHandler ;
     private int count = 0;
+    boolean auth = false;
 
     /**
      * Touch Event Ignored by Passcode
@@ -50,7 +51,7 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
             case 2: value = " [*][*][_][_]" ; break ;
             case 3: value = " [*][*][*][_]" ; break ;
             case 4: value = " [*][*][*][*]" ; break ;
-            default: value = " [*][*][*][*]" ; break ;
+            default: value = " [_][_][_][_]" ; break ;
         }
          return value  ;
     }
@@ -72,6 +73,16 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
     public void keyEventUpdate( int c, String key ) 
     {
         System.err.println( "Key: " + key ) ;
-        count = c ;
+        count = c;
+        if( count == 4 && !this.auth ) {
+            count = 0;
+        }
+
+    }
+
+
+    @Override
+    public void authEvent() {
+        this.auth = true ;
     }
 }

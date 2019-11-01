@@ -33,6 +33,7 @@ public class AppAuthProxy implements IApp, IPinAuthObserver,IKeyPadObserver {
         ((IKeyPadSubject)kp).attach( pm ) ;
         ((IKeyPadSubject)kp).attach( this ) ;
         ((IPinAuthSubject)pm).registerObserver(this) ;
+        ((IPinAuthSubject)pm).registerObserver((IPinAuthObserver) pc) ;
 
 
     }
