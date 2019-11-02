@@ -1,5 +1,3 @@
-
-
 package starbucks ;
 
 import java.util.ArrayList;
@@ -21,8 +19,8 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
     private String pin = "1234" ;
     private boolean authenticated = false ;
     private int pinCount=0 ;
-    //private IPinAuthObserver auth ; // single observer
-    private ArrayList<IPinAuthObserver> auth ;
+    private IPinAuthObserver auth ; // single observer
+    //private ArrayList<IPinAuthObserver> auth ;
 
     // pin machine states
     private NoPinDigits pin0 ;
@@ -52,11 +50,11 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
         pin2 = new TwoPinDigits( this ) ;
         pin3 = new ThreePinDigits( this ) ;
         pin4 = new FourPinDigits( this ) ;
-        auth = new ArrayList<IPinAuthObserver>() ;
+        //auth = new ArrayList<IPinAuthObserver>() ;
         this.d1 = "" ;
         this.d2 = "" ;
         this.d3 = "" ;
-        this.d4 = "" ;        
+        this.d4 = "" ;
         this.state = pin0 ;
     }
 
@@ -101,7 +99,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void setStateOnePinDigit( String digit )
     {
-        this.pinCount += 1 ;
+        this.pinCount = 1 ;
         this.state = pin1 ;
         if ( digit != null )
             this.d1 = digit ;
@@ -119,7 +117,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void setStateTwoPinDigits( String digit )
     {
-        this.pinCount += 1 ;
+        this.pinCount = 2 ;
         this.state = pin2 ;
         if ( digit != null )
             this.d2 = digit ;
@@ -136,7 +134,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void setStateThreePinDigits( String digit )
     {
-        this.pinCount += 1 ;
+        this.pinCount = 3 ;
         this.state = pin3 ;
         if ( digit != null )
             this.d3 = digit ;
@@ -152,7 +150,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public void setStateFourPinDigits( String digit )
     {
-        this.pinCount += 1 ;
+        this.pinCount = 4 ;
         this.state = pin4 ;
         if ( pinCount == 4 && digit != null )
         {
@@ -181,50 +179,48 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      * @param c   Num Keys So Far
      * @param key Last Key Enterred
      */
-    public void keyEventUpdate( int c, String key ) 
+    public void keyEventUpdate( int c, String key )
     {
         System.err.println( "Key: " + key + " Count: " + c ) ;
         if ( key.equals(" ") )
-        /* nothing */ ;
+            /* nothing */ ;
         else if ( key.equals("X") )
             backspace() ;
         else
-            number( key ) ;        
-    }    
+            number( key ) ;
+    }
 
     /**
      * Register Observers for Pin Authentication
      * @param obj Object Observing Pin Auth
      */
-    public void registerObserver( IPinAuthObserver obj ) 
+    public void registerObserver( IPinAuthObserver obj )
     {
-        this.auth.add(obj) ;
+        this.auth = obj ;
     }
 
     /**
      * Remove Pin Auth Observer
      * @param obj Object No Longer Observing Pin Auth
      */
-    public void removeObserver( IPinAuthObserver obj ) 
+    public void removeObserver( IPinAuthObserver obj )
     {
 
-        int i = auth.indexOf(obj) ;
-        if ( i >= 0 )
-            auth.remove(i) ;
+        this.auth = null ;
     }
 
     /**
      * Notify Pin Auth Observers
      */
-    public void notifyObserver( ) 
+    public void notifyObserver( )
     {
-       // if ( this.auth != null )
-       //     this.auth.authEvent() ;
-        for (int i=0; i<auth.size(); i++)
-        {
-            IPinAuthObserver observer = auth.get(i) ;
-            observer.authEvent() ;
-        }
+         if ( this.auth != null )
+             this.auth.authEvent() ;
+        //for (int i=0; i<auth.size(); i++)
+        //{
+        //    IPinAuthObserver observer = auth.get(i) ;
+        //    observer.authEvent() ;
+        //}
     }
 
     /** Debug Dump to Stderr State Machine Changes */

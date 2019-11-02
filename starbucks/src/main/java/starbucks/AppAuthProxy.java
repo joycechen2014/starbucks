@@ -33,7 +33,7 @@ public class AppAuthProxy implements IApp, IPinAuthObserver,IKeyPadObserver {
         ((IKeyPadSubject)kp).attach( pm ) ;
         ((IKeyPadSubject)kp).attach( this ) ;
         ((IPinAuthSubject)pm).registerObserver(this) ;
-        ((IPinAuthSubject)pm).registerObserver((IPinAuthObserver) pc) ;
+      //  ((IPinAuthSubject)pm).registerObserver((IPinAuthObserver) pc) ;
 
 
     }
@@ -97,6 +97,8 @@ public class AppAuthProxy implements IApp, IPinAuthObserver,IKeyPadObserver {
             out += "   " + ps.name() + "  \n" ;
             out += "----------------\n" ;
             if( count == 4) {
+                kp.setZero();
+                count = 0;
                 out += "  Invalid Pin\n\n";
             }
             out += ps.display() ;
