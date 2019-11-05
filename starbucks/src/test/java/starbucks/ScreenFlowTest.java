@@ -163,7 +163,8 @@ public class ScreenFlowTest
         app.touch(3,3) ;
         assertEquals("MyCards", app.screen());
         lines = app.screenContents().split("\n");  
-        assertEquals("$0.00", lines[7].trim());        
+        assertEquals("$0.00", lines[7].trim());
+
     }    
 
     @Test

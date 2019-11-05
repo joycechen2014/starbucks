@@ -50,6 +50,7 @@ public class AppProxyTest
         app.touch(3,5) ;
         app.touch(2,6) ;
         assertEquals("PinScreen", app.screen());
+        ProxyPatternTest1();
     }
     
     @Test

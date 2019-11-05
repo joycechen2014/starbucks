@@ -67,6 +67,93 @@ public class MyCardsPayTest
         assertEquals("MyCardsPay", app.screen());
         lines = app.screenContents().split("\n");
         assertEquals("[123456789]", lines[6]);
+        app.touch(2,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$18.50", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$17.00", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$15.50", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$14.00", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$12.50", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$11.00", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$9.50", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$8.00", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$6.50", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$5.00", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$3.50", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$2.00", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2);
+        app.touch(3,3);
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$0.50", lines[7]);
+        app.touch(3,3);
+        app.touch(3,2); // balance below $1.5
+        app.touch(3,3);
+
+        assertEquals("MyCards", app.screen());
+        lines = app.screenContents().split("\n");
+        assertEquals("$0.50", lines[7]);
+
     }
 
     @After

@@ -31,8 +31,18 @@ public class PasscodeTest
         app.touch(3,5) ;
         app.touch(1,6) ;
         assertEquals("MyCards", app.screen());
-    }    
-
+    }
+    @Test
+    public void PasscodeTest2()
+    {
+        assertEquals("PinScreen", app.screen());
+        app.touch(1,5) ;
+        app.touch(2,5) ;
+        app.touch(3,5) ;
+        app.touch(1,5) ;
+        assertEquals("PinScreen", app.screen());
+        PasscodeTest1();
+    }
 
     @After
     public void tearDown()

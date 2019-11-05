@@ -35,7 +35,7 @@ public class MyCardsPay extends Screen
     @Override
     public void touch(int x, int y) {
         if((x == 2 || x == 3) && y == 2) {
-            DecimalFormat df = new DecimalFormat("#.00");
+            DecimalFormat df = new DecimalFormat("0.00");
             if(Double.valueOf(mycard.getValue().substring(1)) >= 1.50)
             mycard.setValue("$"  + df.format(Double.valueOf(mycard.getValue().substring(1)) - 1.50));
         }
