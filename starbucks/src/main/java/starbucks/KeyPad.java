@@ -64,7 +64,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
         int kx = 0, ky = 0 ;
         kx = x;
         ky = y-4 ;
-        if ( kx==3 && ky ==4 )
+        if ( x==3 && y ==8 )
             return "X" ;
         else if ( kx==2 && ky == 4 )
             return "0" ;

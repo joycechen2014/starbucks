@@ -18,10 +18,20 @@ public class Settings extends Screen implements IKeyPadObserver {
     @Override
     public void touch(int x, int y) {
 
-        if(( x == 1 || x == 2 || x == 3 ) && y == 1) {
+        if(isaBoolean(x, y)) {
             Frame.getInstance().setCurrentScreen(addCard);
         }
     }
+    /**
+     * Touch Events
+     * @param x Touch X Coord.
+     * @param y Touch Y Coord.
+     * @return if is touched(1,1),(2,1) or (3,1)
+     */
+    private boolean isaBoolean(int x, int y) {
+        return ( x == 1 || x == 2 || x == 3 ) && y == 1;
+    }
+
     /**
      * Get Display Contents
      * @return Display Contents

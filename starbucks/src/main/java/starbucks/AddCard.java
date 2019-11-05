@@ -37,11 +37,11 @@ public class AddCard extends Screen
      */
    @Override
     public void touch(int x, int y) {
-        if(( x == 1 || x == 2 || x == 3 ) && y == 2){
+        if(isaBoolean(x, y)){
             ((IKeyPadSubject)kp).removeObserver( cc ); ;
             ((IKeyPadSubject)kp).attach( ci ) ;
         }
-        else if(x == 2 && y == 3) {
+        if(x == 2 && y == 3) {
             ((IKeyPadSubject)kp).removeObserver( ci ); ;
             ((IKeyPadSubject)kp).attach( cc ) ;
         }
@@ -50,6 +50,16 @@ public class AddCard extends Screen
             addCardAthutic = true;
         }
     }
+    /**
+     * Touch Events
+     * @param x Touch X Coord.
+     * @param y Touch Y Coord.
+     * @return if is touched(1,2),(2,2) or (3,2)
+     */
+    private boolean isaBoolean(int x, int y) {
+        return ( x == 1 || x == 2 || x == 3 ) && y == 2;
+    }
+
 
     /**
      * {@inheritDoc}

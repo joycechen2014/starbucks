@@ -47,9 +47,7 @@ final class Main {
                 String y = values[1] ;
                 msg = "touch: x="+x + " y="+y ; 
                 app.touch( Integer.parseInt(x), Integer.parseInt(y) ) ;
-            } else if ( cmd.equals("a") || cmd.equals("b") 
-                        || cmd.equals("c") || cmd.equals("d")
-                        || cmd.equals("e")
+            } else if (isaBoolean(cmd)
                 ) {
                 String selection = cmd.toUpperCase() ;
                 msg = "selected: " + selection ;
@@ -74,6 +72,16 @@ final class Main {
                 msg = "" ;  
             }
         }
+    }
+    /**
+     * Touch Events
+     * @param cmd Touch command
+     * @return if is touched a,b,c,d,e
+     */
+    private static boolean isaBoolean(String cmd) {
+        return cmd.equals("a") || cmd.equals("b")
+                    || cmd.equals("c") || cmd.equals("d")
+                    || cmd.equals("e");
     }
 }
 

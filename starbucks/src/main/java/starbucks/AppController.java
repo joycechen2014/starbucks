@@ -26,6 +26,8 @@ public class AppController implements IApp {
         rewards = new Rewards() ;
         payments = new Payments() ;
         settings = new Settings() ;
+       // frame = Frame.getInstance(mycards) ;
+       //frame = new Frame( mycards ) ;
         frame = Frame.init(mycards);
 
         // setup command pattern
