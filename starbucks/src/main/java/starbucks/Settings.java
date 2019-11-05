@@ -10,15 +10,22 @@ public class Settings extends Screen implements IKeyPadObserver {
 
         addCard = new AddCard() ;
     }
-
-    //@Override
+    /**
+     * Send Touch Events to the Chain
+     * @param x Touch X Coord.
+     * @param y Touch Y Coord.
+     */
+    @Override
     public void touch(int x, int y) {
 
         if(( x == 1 || x == 2 || x == 3 ) && y == 1) {
             Frame.getInstance().setCurrentScreen(addCard);
         }
     }
-
+    /**
+     * Get Display Contents
+     * @return Display Contents
+     */
     @Override
     public String display() {
         String out = "";
@@ -30,7 +37,11 @@ public class Settings extends Screen implements IKeyPadObserver {
         out += "Help";
        return out;
     }
-
+    /**
+     * Key Event to Notify Observers
+     * @param numKeys Number of Digits So Far
+     * @param key     Key/Digit Pressed
+     */
     @Override
     public void keyEventUpdate(int numKeys, String key) {
 

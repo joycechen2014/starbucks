@@ -154,7 +154,10 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
             observer.keyEventUpdate( countPinDigits, lastKey ) ;
         }
     }
-
+    /**
+     * set countPinDigits =0;
+     *
+     */
     public void setZero() {
         countPinDigits = 0;
         lastKey = " ";

@@ -15,7 +15,9 @@ public class Frame implements IFrame
     private IOrientationStrategy portraitStrategy ;
     private IOrientationStrategy landscapeStrategy ;
     private IOrientationStrategy currentStrategy ;
-
+    /** constructor
+     * @return frameInstance
+     * */
     public static Frame getInstance() {
         if(frameInstance == null) {
             throw new AssertionError("You have to call init first");
@@ -113,7 +115,11 @@ public class Frame implements IFrame
             spaces.append(" ") ;
         return spaces.toString() ;
     }
-
+    /**
+     * Helper:  Pad Spaces for a Line
+     * @param  initial screen
+     * @return frameInstance
+     */
     public synchronized static Frame init(IScreen initial) {
         frameInstance = new Frame(initial);
         return frameInstance;

@@ -67,7 +67,8 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
      * @param c   Count of Keys So Far
      * @param key Last key Pressed
      */
-    public void keyEventUpdate( int c, String key )
+    @Override
+    public void keyEventUpdate(int c, String key )
     {
         System.err.println( "Key: " + key ) ;
         count = c;

@@ -16,15 +16,22 @@ public class MyCardsPay extends Screen
         mycard = card;
     }
 
-
+    /**
+     * Get Display Contents
+     * @return Display Contents
+     */
     @Override
     public String display() {
-        String value = mycard.getCardID() != null ? "[" + mycard.getCardID() + "]" : "[000000000]";
+        String value = mycard.getCardID() ;
         value += "\n\n\n";
         value += "Scan Now";
         return value;
     }
-
+    /**
+     * Send Touch Events to the Chain
+     * @param x Touch X Coord.
+     * @param y Touch Y Coord.
+     */
     @Override
     public void touch(int x, int y) {
         if((x == 2 || x == 3) && y == 2) {

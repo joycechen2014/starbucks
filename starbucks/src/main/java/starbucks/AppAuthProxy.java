@@ -141,6 +141,11 @@ public class AppAuthProxy implements IApp, IPinAuthObserver,IKeyPadObserver {
     }
 
 
+    /**
+     * Key Event to Notify Observers
+     * @param c Number of Digits So Far
+     * @param key     Key/Digit Pressed
+     */
     @Override
     public void keyEventUpdate(int c, String key) {
         System.err.println( "Key: " + key ) ;

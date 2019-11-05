@@ -26,8 +26,6 @@ public class AppController implements IApp {
         rewards = new Rewards() ;
         payments = new Payments() ;
         settings = new Settings() ;
-       // frame = Frame.getInstance(mycards) ;
-       //frame = new Frame( mycards ) ;
         frame = Frame.init(mycards);
 
         // setup command pattern
@@ -70,6 +68,7 @@ public class AppController implements IApp {
         ) ;
         displaysettings.setReceiver(
                 new IMenuReceiver() {
+                    /** Perform the Action for the Menu Choice */
                     @Override
                     public void doAction() {
                        frame.setCurrentScreen( settings );

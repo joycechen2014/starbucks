@@ -10,7 +10,10 @@ public class MyCardsOptions extends Screen
     {
         mycardsmoreoptions = new MyCardsMoreOptions();
     }
-
+    /**
+     * Get Display Contents
+     * @return Display Contents
+     */
     @Override
     public String display() {
         String value = "";
@@ -20,7 +23,11 @@ public class MyCardsOptions extends Screen
         value += "Cancel";
         return value;
     }
-
+    /**
+     * Send Touch Events to the Chain
+     * @param x Touch X Coord.
+     * @param y Touch Y Coord.
+     */
     @Override
     public void touch(int x, int y) {
         if( (x == 1 || x == 2 || x == 3) && y == 7) {

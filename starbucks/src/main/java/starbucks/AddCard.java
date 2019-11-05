@@ -22,21 +22,20 @@ public class AddCard extends Screen
         cc = new CardCode() ;
         addCardAthutic = false;
 
-        // setup the composite pattern
         addSubComponent( ci ) ;
         addSubComponent( cc ) ;
         addSubComponent( sp ) ;
         addSubComponent( kp ) ;
 
-
-        // setup the observer pattern
         ((IKeyPadSubject)kp).attach( ci ) ;
-        //((IKeyPadSubject)kp).attach( this ) ;
-        // ((IPinAuthSubject)addCard).registerObserver((IPinAuthObserver) this) ;
-
     }
 
-    @Override
+    /**
+     * Send Touch Events to the Chain
+     * @param x Touch X Coord.
+     * @param y Touch Y Coord.
+     */
+   @Override
     public void touch(int x, int y) {
         if(( x == 1 || x == 2 || x == 3 ) && y == 2){
             ((IKeyPadSubject)kp).removeObserver( cc ); ;
@@ -52,6 +51,9 @@ public class AddCard extends Screen
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void next() {
         if(addCardAthutic) {
@@ -60,7 +62,10 @@ public class AddCard extends Screen
         }
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
+   @Override
     public void prev() {
         Settings setting = new Settings();
         Frame.getInstance().setCurrentScreen(setting);

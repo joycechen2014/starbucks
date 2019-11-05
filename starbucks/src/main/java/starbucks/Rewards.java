@@ -10,7 +10,10 @@ public class Rewards extends Screen
     {
 
     }
-
+    /**
+     * Get Display Contents
+     * @return Display Contents
+     */
     @Override
     public String display() {
         String value = "";

@@ -12,5 +12,5 @@ public interface IKeyPadObserver
      * @param numKeys Number of Digits So Far
      * @param key     Key/Digit Pressed
      */
-    void keyEventUpdate( int numKeys, String key ) ;
+     void keyEventUpdate( int numKeys, String key ) ;
 }

@@ -33,15 +33,15 @@ public class Screen implements IScreen, IDisplayComponent
     public void touch(int x, int y) {
         chain.touch(x, y) ;
     }
-    
+
     /** Next Screen - Not Used */
     public void next() {
-        // add code here
+
     }
     
     /** Previous Screen - Not Used */
     public void prev()  {
-        // add code here
+
     }
         
     /**
@@ -50,7 +50,7 @@ public class Screen implements IScreen, IDisplayComponent
      * @param n Next Screen Label
      */
     public void setNext(IScreen s, String n )  {
-        // add code here
+
     }
     
     /**
@@ -59,7 +59,7 @@ public class Screen implements IScreen, IDisplayComponent
      * @param n Previous Screen Label
      */
     public void setPrev(IScreen s, String n )  {
-        // add code here
+
     }    
 
     /**

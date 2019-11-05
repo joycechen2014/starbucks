@@ -14,11 +14,13 @@ public class Store extends Screen
       map[10][3] = 'X';
       map[5][5] = 'X';
     }
-
+    /**
+     * Get Display Contents
+     * @return Display Contents
+     */
     @Override
     public  String display() {
         StringBuffer value = new StringBuffer();
-        //String value = "";
         for(int i = 0; i < row; i++ ) {
             for (int j = 0; j < colum; j++) {
                 value.append(map[i][j]);
