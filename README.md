@@ -15,19 +15,12 @@ Make payment | In the class of MyCardsPay,we defined an attribute of MyCards. We
  
 
 ## UML Diagram
-```
+
 Class Diagram
 ![image](https://github.com/gopinathsjsu/starbucks-joycechen2014/blob/master/Class%20Diagram_addcard.png)
 Sequence Diagram
-![image]https://github.com/gopinathsjsu/starbucks-joycechen2014/blob/master/Class%20Diagram_addcard.png
+![image](https://github.com/gopinathsjsu/starbucks-joycechen2014/blob/master/Class%20Diagram_addcard.png)
 
-```
+
 
 ## Testing
-Use GumballMachineTest to do the test. 
-GumballMachine1:
-![image](https://github.com/gopinathsjsu/assignment-1-gumball-joycechen2014/blob/master/GumbalMachine1.png)
-GumballMachine2:
-![image](https://github.com/gopinathsjsu/assignment-1-gumball-joycechen2014/blob/master/GumballMachine2.png)
-GumballMachine3:
-![image](https://github.com/gopinathsjsu/assignment-1-gumball-joycechen2014/blob/master/GumballMachine3.png)
