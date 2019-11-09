@@ -30,9 +30,19 @@ public class CardID  implements ITouchEventHandler, IDisplayComponent, IKeyPadOb
      */
     @Override
     public void keyEventUpdate(int c, String key) {
-        System.err.println( "Key: " + key ) ;
-        if( cardID.length() < 9) {
-            cardID.append(key);
+        if (key != " ") {
+            System.err.println("Key: " + key);
+            if (key == "X") {
+                if (cardID.length() > 0) {
+                    cardID.deleteCharAt(cardID.length() - 1);
+                }
+
+            } else {
+                if (cardID.length() < 9) {
+                    cardID.append(key);
+                }
+
+            }
         }
     }
     /**
@@ -58,8 +68,7 @@ public class CardID  implements ITouchEventHandler, IDisplayComponent, IKeyPadOb
      * @return true or false.
      */
     public boolean isComplete() {
-        System.out.println("length :" + cardID.length());
-        return (cardID.length() == 9 );
+         return cardID.length() == 9 ;
     }
     /**
      * return CardCode

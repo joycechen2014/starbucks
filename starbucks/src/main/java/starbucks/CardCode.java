@@ -29,9 +29,17 @@ public class CardCode  implements ITouchEventHandler, IDisplayComponent, IKeyPad
      */
     @Override
     public void keyEventUpdate(int c, String key) {
-        System.err.println( "Key: " + key ) ;
-        if( cardCode.length() < 3) {
-            cardCode.append(key);
+        if (key != " ") {
+            if (key == "X") {
+                if (cardCode.length() > 0) {
+                    cardCode.deleteCharAt(cardCode.length() - 1);
+                }
+            } else {
+                if (cardCode.length() < 3) {
+                    cardCode.append(key);
+                    System.out.println("Key: " + key + " : Length = " + cardCode.length());
+                }
+            }
         }
     }
     /**
@@ -57,7 +65,7 @@ public class CardCode  implements ITouchEventHandler, IDisplayComponent, IKeyPad
      * @return true or false.
      */
     public boolean isComplete() {
-        return cardCode.length() == 3;
+         return cardCode.length() == 3;
     }
     /**
      * return CardCode

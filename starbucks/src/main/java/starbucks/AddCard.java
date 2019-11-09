@@ -13,14 +13,14 @@ public class AddCard extends Screen
     private CardID ci;
     private Spacer sp ;
     private CardCode cc;
-    private boolean addCardAthutic;
+   // private boolean addCardAthutic;
     public AddCard()
     {
         kp = new KeyPad() ;
         ci = new CardID() ;
         sp = new Spacer() ;
         cc = new CardCode() ;
-        addCardAthutic = false;
+       // addCardAthutic = false;
 
         addSubComponent( ci ) ;
         addSubComponent( cc ) ;
@@ -46,9 +46,7 @@ public class AddCard extends Screen
             ((IKeyPadSubject)kp).attach( cc ) ;
         }
         kp.touch(x, y);
-        if(ci.isComplete() && cc.isComplete()) {
-            addCardAthutic = true;
-        }
+
     }
     /**
      * Touch Events
@@ -66,10 +64,13 @@ public class AddCard extends Screen
      */
     @Override
     public void next() {
-        if(addCardAthutic) {
+        if(ci.isComplete() && cc.isComplete()) {
             MyCards mycards = new MyCards("$20.00",ci,cc);
             Frame.getInstance().setCurrentScreen(mycards);
+        } else {
+            Frame.getInstance().setCurrentScreen(new AddCard());
         }
+
     }
 
     /**

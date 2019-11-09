@@ -4,11 +4,8 @@ package starbucks;
 
 /** Settings Screen */
 public class Settings extends Screen implements IKeyPadObserver {
-    private AddCard addCard;
 
     public Settings() {
-
-        addCard = new AddCard() ;
     }
     /**
      * Send Touch Events to the Chain
@@ -19,7 +16,7 @@ public class Settings extends Screen implements IKeyPadObserver {
     public void touch(int x, int y) {
 
         if(isaBoolean(x, y)) {
-            Frame.getInstance().setCurrentScreen(addCard);
+            Frame.getInstance().setCurrentScreen(new AddCard());
         }
     }
     /**

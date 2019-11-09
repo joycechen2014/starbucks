@@ -18,6 +18,7 @@ public class AppController implements IApp {
     private IMenuCommand doStore ;
     private IMenuCommand displaysettings;
 
+
     private IFrame frame ;
 
     public AppController() {
@@ -36,6 +37,7 @@ public class AppController implements IApp {
         displayRewards  = new MenuCommand() ;
         doStore         = new MenuCommand() ;
         displaysettings = new MenuCommand() ;
+
         displayMyCards.setReceiver(
           new IMenuReceiver() {
               /** Command Action */
@@ -120,7 +122,8 @@ public class AppController implements IApp {
      * @param c Menu Bar Option (A, B, C, D or E)
      */
     public void execute( String c ) {
-        frame.cmd( c ) ;
+
+            frame.cmd( c ) ;
     }
 
     /**
@@ -152,5 +155,6 @@ public class AppController implements IApp {
     public String screenContents() {
         return frame.contents() ;
     }
+
 
 }

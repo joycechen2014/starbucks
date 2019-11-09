@@ -21,12 +21,21 @@ public class Store extends Screen
     @Override
     public  String display() {
         StringBuffer value = new StringBuffer();
-        for(int i = 0; i < row; i++ ) {
+       /* for(int i = 0; i < row; i++ ) {
             for (int j = 0; j < colum; j++) {
                 value.append(map[i][j]);
             }
             value.append("\n");
-        }
+        }*/
+        value.append("         X\n") ;
+        value.append("   X\n");
+        value.append("       X\n");
+        value.append("      X\n");
+        value.append("  X\n");
+        value.append("           X\n");
+        value.append("  X\n");
+
+
         return value.toString();
     }
 }
