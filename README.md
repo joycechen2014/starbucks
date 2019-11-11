@@ -23,6 +23,6 @@ Make payment | In the class of MyCardsPay,we defined an attribute of MyCards. We
 Class Diagram
 ![image](https://github.com/gopinathsjsu/starbucks-joycechen2014/blob/master/Class%20Diagram_addcard.png)
 Sequence Diagram
-![image](https://github.com/gopinathsjsu/starbucks-joycechen2014/blob/master/Class%20Diagram_addcard.png)
+![image](https://github.com/gopinathsjsu/starbucks-joycechen2014/blob/master/Sequence%20Diagram_addcard.png)
 
 
